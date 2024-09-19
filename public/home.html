@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO App</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header class="main-header">
+    <h1>TODO APP</h1>
+    <nav>
+      <a href="http://localhost:3000/home" class="home-link">Home</a>
+      <button  class="logout-button">Logout</button>
+    </nav>
+  </header>
+
+  <div class="sub-header">
+    <button id="Your-TODOs"  class="nav-btn">Your TODOs</a>
+    <button id="Completed-TODOs"  class="nav-btn">Completed TODOs</a>
+    <button id="Add-TODO" class="nav-btn">Add TODO</a>
+  </div>
+
+  <section class="content">
+    <h2>Welcome to Your TODO App</h2>
+    <p>Manage your tasks efficiently by navigating through your to-do lists, completed tasks, or add new ones!</p>
+  </section>
+  <section class="todoes-list hide">
+
+  </section>
+    <section class="completed-todoes-list hide"></section>
+<p class="empty-todo hide"></p>
+  </section>
+  <section class="Add-TODO-data hide">
+    <h2 class="result">Enter your todo Details below</h2>
+    <form id="todo-form " class="form">
+    <input type="text" id="todo-name" placeholder="TODO Name" required><br>
+    <input type="date" id="todo-date" required><br>
+    <input type="time" id="todo-time" required><br>
+    <button type="button" id="submit-todo">Submit</button>
+  </form>
+  <script src="home.js"></script>
+</body>
+</html>

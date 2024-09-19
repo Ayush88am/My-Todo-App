@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login page</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+ <div class="container">
+  <h2 style="margin-bottom: 1rem; color:green; font-family: 'Times New Roman', Times, serif; font-weight: 800;">Welcome back my <span style="color: red; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-decoration:underline;text-shadow: 0lvi;">DEAR</span></h2>
+    <div class="UserSignUpBox">
+            <input
+        id="userEmail"
+        class="signUp-input"
+        type="email"
+        placeholder="Please enter your EMAIL"
+      />
+      <input
+        id="userPassword"
+        class="signUp-input"
+        type="password"
+        placeholder="Please enter your PASSWORD"
+      />
+      <button class="signUp-button" id="button">Log In</button>
+      <h3 id="Notify" style="color:black"></h3>
+      
+        <h3>
+          Don't have account ??
+          <a href="http://localhost:3000">SignUp</a>
+        </h3>
+    </div>
+  </div>
+  <script>
+    let userEmail = document.getElementById('userEmail');
+    let userPassword = document.getElementById('userPassword');
+    let signUp_button = document.querySelector('#button');
+    let notify = document.querySelector('#Notify');
+    let token=false
+    let obj = {
+      userEmail: '',
+      userPassword: ''
+    };
+
+  
+    userEmail.addEventListener('change', (e) => {
+      obj.userEmail = e.target.value;
+    });
+
+    userPassword.addEventListener('change', (e) => {
+      obj.userPassword = e.target.value;
+    });
+
+    signUp_button.addEventListener('click', async () => {
+      if (!obj.userEmail || !obj.userPassword) {
+        notify.innerText = 'All fields are required!';
+        notify.style.color = 'red';
+        return;
+      }
+
+      
+
+
+   
+        const response = await fetch('http://localhost:3000/userLogin', {
+          method: 'POST',
+          body: JSON.stringify(obj),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+        });
+        const data = await response.json();
+        notify.innerText = `${JSON.stringify(data.messege)}`;
+        if(response.ok){
+          notify.style.color = 'green';
+        window.location.href='/home'
+        }
+        else{
+          notify.style.color = 'red';
+        }
+
+        userEmail.value = '';
+        userPassword.value = '';
+        
+      });
+    window.addEventListener('load',()=>{
+        let tokenSaved=document.cookie.split('=')[1];
+
+      if(tokenSaved){
+           window.location.href='/home'
+      }
+    })
+
+
+  </script>
+</body>
+</html>

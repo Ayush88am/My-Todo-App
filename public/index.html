@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign page</title>
+  <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+  <div class="container">
+      <h2 style="margin-bottom: 1rem; color:green; font-family: 'Times New Roman', Times, serif; font-weight: 800;">Welcome  Dear to the <span style="color: red; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-decoration:underline;text-shadow: 0lvi;">Todo App</span></h2>
+    <div class="UserSignUpBox">
+      <input
+        class="signUp-input"
+        id="userName"
+        type="text"
+        placeholder="Please enter your USERNAME"
+      />
+      <input
+        id="userEmail"
+        class="signUp-input"
+        type="email"
+        placeholder="Please enter your EMAIL"
+      />
+      <input
+        id="userPassword"
+        class="signUp-input"
+        type="password"
+        placeholder="Please enter your PASSWORD"
+      />
+      <button class="signUp-button" id="button">Sign Up</button>
+      <h3 id="Notify" style="color:black"></h3>
+      
+        <h3>
+          Already have account ??
+          <a href="http://localhost:3000/login">Login</a>
+        </h3>
+      
+    </div>
+  </div>
+
+  <script>
+    let userName = document.getElementById('userName');
+    let userEmail = document.getElementById('userEmail');
+    let userPassword = document.getElementById('userPassword');
+    let signUp_button = document.querySelector('#button');
+    let notify = document.querySelector('#Notify');
+
+    let obj = {
+      userName: '',
+      userEmail: '',
+      userPassword: ''
+    };
+
+    userName.addEventListener('change', (e) => {
+      obj.userName = e.target.value;
+    });
+
+    userEmail.addEventListener('change', (e) => {
+      obj.userEmail = e.target.value;
+    });
+
+    userPassword.addEventListener('change', (e) => {
+      obj.userPassword = e.target.value;
+    });
+
+    signUp_button.addEventListener('click', async () => {
+      if (!obj.userName || !obj.userEmail || !obj.userPassword) {
+        notify.innerText = 'All fields are required!';
+        notify.style.color = 'red';
+        return;
+      }
+
+      
+
+
+   
+        const response = await fetch('http://localhost:3000/userSignup', {
+          method: 'POST',
+          body: JSON.stringify(obj),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials:'include'
+        });
+        const data = await response.json();
+        notify.innerText = `${JSON.stringify(data.message)}`;
+        if(response.ok){
+          notify.style.color = 'green';
+        window.location.href='/home'
+        }
+        else{
+          notify.style.color = 'red';
+        }
+
+        // Optionally reset input fields after success
+        userName.value = '';
+        userEmail.value = '';
+        userPassword.value = '';
+
+      
+    });
+        window.addEventListener('load',()=>{
+        let tokenSaved=document.cookie.split('=')[1];
+
+      if(tokenSaved){
+        window.location.href='/home'
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  background-color: blanchedalmond;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.UserSignUpBox {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 3rem;
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+}
+
+.signUp-input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  
+
+  /* box-sizing:border-box; */
+}
+
+.signUp-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.signUp-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.signUp-button {
+  padding: 0.75rem;
+  background-color: #3498db;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 1s ease;
+}
+
+.signUp-button:hover {
+  background-color: #2980b9;
+}
