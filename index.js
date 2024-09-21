@@ -20,5 +20,5 @@ app.post("/userLogout", router)
 app.get("/home", router)
 app.get('/login',router)
 app.delete('/delete-todo',router);
-
-app.listen(3000)
+const PORT=process.env.PORT || 3000
+app.listen(PORT)
